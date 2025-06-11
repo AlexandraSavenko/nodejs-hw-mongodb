@@ -14,8 +14,17 @@ const contactSchema = new Schema({
 },
 {
     timestamps: true,
+    versionKey: false,
   });
 
 const ContactsCollection = model('contacts', contactSchema);
 
 export default ContactsCollection;
+
+// {
+//     "name": "Bob",
+//     "phoneNumber": "5550123",
+//     "email": "mrBob@gmail.com",
+//     "isFavourite": true,
+//     "contactType": "work"
+// }
