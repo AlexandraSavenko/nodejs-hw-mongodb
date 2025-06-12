@@ -14,3 +14,5 @@ return {
     isNew: Boolean(rawResult.lastErrorObject.upserted)
 };
 };
+
+export const deleteContact = filter => ContactsCollection.findOneAndDelete(filter);

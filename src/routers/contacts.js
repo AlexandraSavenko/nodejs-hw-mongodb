@@ -9,7 +9,11 @@ contactsRouter.get('/:id', ctrlWrapper(contactsControllers.getContactByIdControl
 
 contactsRouter.post('/', ctrlWrapper(contactsControllers.addContactController));
 
-contactsRouter.put('/:id', ctrlWrapper(contactsControllers.upsertController));
+contactsRouter.put('/:id', ctrlWrapper(contactsControllers.upsertContactController));
+
+contactsRouter.patch('/:id', ctrlWrapper(contactsControllers.patchContactController));
+
+contactsRouter.delete('/:id', ctrlWrapper(contactsControllers.deleteContactController));
 
 
 
