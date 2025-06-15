@@ -3,6 +3,6 @@ export const errorHandler = (error, req, res, next) => {
         res.status(status).json({
             status,
             message,
-            data: error.message
+            // data: error.message
         });
     };

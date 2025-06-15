@@ -1,6 +1,7 @@
 import * as contactServices from '../services/contacts.js';
 import createHttpError from 'http-errors';
 
+
 export const getContactsController = async (req, res, next) => {
   const data = await contactServices.getContacts();
   if (!data) {
@@ -28,8 +29,8 @@ export const getContactByIdController = async (req, res, next) => {
 };
 
 export const addContactController = async (req, res) => {
+  
 const data = await contactServices.addContact(req.body);
-console.log(data);
 
 res.status(201).json({
   status: 201,
