@@ -24,7 +24,7 @@ contactSchema.post("findOneAndUpdate", handleSaveError);
 
 
 const ContactsCollection = model('contacts', contactSchema);
-
+export const sortByList = ["name", "phoneNumber", "email", "isFavourite", "contactType"];
 export default ContactsCollection;
 
 // {
