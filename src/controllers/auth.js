@@ -49,3 +49,14 @@ export const refreshController = async (req, res) => {
     },
   });
 };
+
+export const logoutController = async (req, res) => {
+
+if(req.cookies.sessionId){
+  await authServices.logout(req.cookies.sessionId);
+}
+res.clearCookie("sessionId");
+res.clearCookie("refreshToken");
+res.status(204).send();
+
+};
