@@ -4,7 +4,22 @@ import SessionCollection from '../db/models/sessions.js';
 import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 
-import { accessTokenLifetime, refreshTokenLifetime } from '../constants/users.js';
+import {
+  accessTokenLifetime,
+  refreshTokenLifetime,
+} from '../constants/users.js';
+
+const createSession = () => {
+  const accessToken = randomBytes(30).toString('base64');
+  const refreshToken = randomBytes(30).toString('base64');
+
+  return {
+    accessToken,
+    refreshToken,
+    accessTokenValidUntill: Date.now() + accessTokenLifetime,
+    refreshTokenValidUntill: Date.now() + refreshTokenLifetime,
+  };
+};
 
 export const register = async (payload) => {
   const { email, password } = payload;
@@ -26,13 +41,35 @@ export const login = async ({ email, password }) => {
     throw createHttpError(401, 'Email or password is incorrect');
   }
   await SessionCollection.deleteOne({ userId: user._id });
-  const accessToken = randomBytes(30).toString('base64');
-  const refreshToken = randomBytes(30).toString('base64');
+
+  const newSession = createSession();
+
   return SessionCollection.create({
     userId: user._id,
-    accessToken,
-    refreshToken,
-    accessTokenValidUntill: Date.now() + accessTokenLifetime,
-    refreshTokenValidUntill: Date.now() + refreshTokenLifetime
+    ...newSession,
   });
 };
+
+export const refreshUserSession = async ({ sessionId, refreshToken }) => {
+  const session = await SessionCollection.findOne({
+    _id: sessionId,
+    refreshToken,
+  });
+  if (!session) {
+    return createHttpError(401, 'session not found');
+  }
+  if (Date.now() > session.refreshTokenValidUntill) {
+    return createHttpError(401, 'session token expired');
+  }
+  await SessionCollection.deleteOne({ _id: session._id });
+
+  const newSession = createSession();
+  return SessionCollection.create({
+    userId: session.userId,
+    ...newSession,
+  });
+};
+
+export const findSession = (filter) => SessionCollection.findOne(filter);
+
+export const findUser = (filter) => userCollection.findOne(filter);
