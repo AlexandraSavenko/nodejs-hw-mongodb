@@ -26,7 +26,7 @@ export const setupServer = () => {
         });
     });
 
-    app.get("/contact/:id", async (req, res) => {
+    app.get("/contacts/:id", async (req, res) => {
         const {id} = req.params;
         const data = await contactServices.getContactById(id);
         // if(!data) {
