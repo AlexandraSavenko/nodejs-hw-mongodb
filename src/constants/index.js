@@ -7,4 +7,7 @@ export const SMTP = {
   SMTP_FROM: 'SMTP_FROM',
 };
 
+export const TEMP_UPLOAD_DIR = path.resolve("temp");
+export const UPLOADS_DIR = path.resolve("upload");
+
 export const TEMPLATE_DIR = path.resolve("src", "templates");

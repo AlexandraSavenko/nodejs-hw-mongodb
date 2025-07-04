@@ -95,7 +95,7 @@ export const login = async ({ email, password }) => {
   if (!user) {
     throw createHttpError(401, 'Email or password is incorrect');
   }
-  if (!user.varify) {
+  if (!user.verify) {
     throw createHttpError(401, 'Email not verified');
   }
   const passwordCompare = await bcrypt.compare(password, user.password);
