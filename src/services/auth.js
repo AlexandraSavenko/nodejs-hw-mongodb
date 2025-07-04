@@ -16,9 +16,12 @@ import {
 
 //--------------------------------------------------------------------------------------------
 
-import { sendEmail } from '../utils/sendMail.js';
+// import { sendEmail } from '../utils/sendMail.js';
 
-import {env} from '../utils/env.js';
+// import {env} from '../utils/env.js';
+import { SMTP } from '../constants/index.js';
+import { getEnvVar } from '../utils/getEnvVar.js';
+import { sendEmail } from '../utils/sendMail.js';
 
 import { TEMPLATE_DIR } from '../constants/index.js';
 
@@ -79,6 +82,8 @@ try {
   throw createHttpError(401, error.message);
 }
 }; 
+
+
 
 export const login = async ({ email, password }) => {
   const user = await userCollection.findOne({ email });
