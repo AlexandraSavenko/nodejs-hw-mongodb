@@ -6,15 +6,11 @@ import { authRegesterSchema, authLoginSchema, requestResetEmailSchema } from '..
 
 const authRouter = Router();
 
-authRouter.post(
-  '/register',
-  validateBody(authRegesterSchema),
+authRouter.post('/register', validateBody(authRegesterSchema),
   ctrlWrapper(authControllers.regesterController),
 );
-authRouter.get('/reset-pwd',  ctrlWrapper(authControllers.verifyController),);
-authRouter.post(
-  '/login',
-  validateBody(authLoginSchema),
+authRouter.get('/verify',  ctrlWrapper(authControllers.verifyController),);
+authRouter.post('/login', validateBody(authLoginSchema),
   ctrlWrapper(authControllers.loginController),
 );
 

@@ -1,8 +1,33 @@
 import nodemailer from "nodemailer";
 import "dotenv/config";
 
-import { SMTP } from '../constants/index.js';
-import { getEnvVar } from '../utils/getEnvVar.js';
+const {UKR_NET_PASSWORD, UKR_NET_FROM} = process.env;
+
+const nodemailConfig = {
+  host: "smtp.ukr.net",
+  port: 465,
+  secure: true,
+  auth: {
+    user: UKR_NET_FROM,
+    pass: UKR_NET_PASSWORD
+  }
+};
+
+const transporter = nodemailer.createTransport(nodemailConfig);
+
+
+
+export const sendEmail = data => {
+
+    const email = {...data, from: UKR_NET_FROM,}; 
+    return transporter.sendMail(email);
+};
+
+
+
+
+// import { SMTP } from '../constants/index.js';
+// import { getEnvVar } from '../utils/getEnvVar.js';
 
 // const {SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, SMTP_FROM} = process.env;
 
@@ -17,24 +42,9 @@ import { getEnvVar } from '../utils/getEnvVar.js';
 // };
 // const transport = nodemailer.createTransport(nodemailerConfig);
 
-const transporter = nodemailer.createTransport({
-  host: getEnvVar(SMTP.SMTP_HOST),
-  port: Number(getEnvVar(SMTP.SMTP_PORT)),
-  auth: {
-    user: getEnvVar(SMTP.SMTP_USER),
-    pass: getEnvVar(SMTP.SMTP_PASSWORD),
-  },
-});
 
-
-
-export const sendEmail = async (options) => {
-  return await transporter.sendMail(options);
-};
-
-// export const sendEmail = data => {
-//     const email = {...data, from: SMTP_FROM,};
-//     return transporter.sendMail(email);
+// export const sendEmail = async (options) => {
+//   return await transporter.sendMail(options);
 // };
 
 // transport.sendMail(email).then(() => console.log("email sent successfully")).catch(error => console.log(error.message));

@@ -16,7 +16,6 @@ const setupSession = (res, session) => {
 };
 
 export const regesterController = async (req, res) => {
-  console.log('controller works');
   const data = await authServices.register(req.body);
   res.status(201).json({
     status: 201,
@@ -26,6 +25,7 @@ export const regesterController = async (req, res) => {
 };
 
 export const verifyController = async (req, res) => {
+  console.log("verifyController works");
 const {token} = req.query;
 await authServices.verify(token);
 res.json({
