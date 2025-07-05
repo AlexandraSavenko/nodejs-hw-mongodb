@@ -5,7 +5,7 @@ import { TEMP_UPLOAD_DIR, UPLOADS_DIR } from './constants/index.js';
 const bootstrap = async () => {
   await initMongoConnection();
   await createDirIfNotExist(TEMP_UPLOAD_DIR);
-    await createDirIfNotExist(UPLOADS_DIR);
+  await createDirIfNotExist(UPLOADS_DIR);
 
   setupServer();
 };
