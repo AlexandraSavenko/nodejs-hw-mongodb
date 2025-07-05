@@ -8,6 +8,6 @@ export const SMTP = {
 };
 
 export const TEMP_UPLOAD_DIR = path.resolve("temp");
-export const UPLOADS_DIR = path.resolve("upload");
+export const UPLOADS_DIR = path.resolve("uploads");
 
 export const TEMPLATE_DIR = path.resolve("src", "templates");
