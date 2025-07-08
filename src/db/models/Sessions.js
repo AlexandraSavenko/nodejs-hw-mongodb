@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { handleSaveError, setUpdateSettings } from "./hooks.js";
+import { handleSaveError } from "./hooks.js";
 
 const sessionSchema = new Schema({
 userId: {

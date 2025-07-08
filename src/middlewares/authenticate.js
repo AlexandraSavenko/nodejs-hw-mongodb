@@ -5,9 +5,7 @@ export const authenticate = async (req, res, next) => {
   const authHeader = req.get('Authorization');
 
   if (!authHeader) {
-    console.log('not header');
-
-    return next(createHttpError(401, 'Authorization header missing'));
+     return next(createHttpError(401, 'Authorization header missing'));
   }
   const [bearer, token] = authHeader.split(' ');
 
