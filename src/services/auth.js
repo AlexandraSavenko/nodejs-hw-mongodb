@@ -21,7 +21,7 @@ import { sendEmail } from '../utils/sendMail.js';
 
 import { TEMPLATE_DIR } from '../constants/index.js';
 import SessionCollection from '../db/models/sessions.js';
-
+//sessions.js name changed
 const verifyEmailTemplatePath = path.join(TEMPLATE_DIR, 'verify-email.html');
 const appDomain = env('APP_DOMAIN');
 const jwtSecret = env('JWT_SECRET');
