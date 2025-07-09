@@ -1,6 +1,5 @@
 import createHttpError from 'http-errors';
 import userCollection from '../db/models/User.js';
-import SessionCollection from '../db/models/sessions.js';
 import bcrypt from 'bcrypt';
 import { randomBytes } from 'crypto';
 import * as path from 'node:path';
@@ -21,6 +20,7 @@ import {env} from '../utils/env.js';
 import { sendEmail } from '../utils/sendMail.js';
 
 import { TEMPLATE_DIR } from '../constants/index.js';
+import SessionCollection from '../db/models/sessions.js';
 
 const verifyEmailTemplatePath = path.join(TEMPLATE_DIR, 'verify-email.html');
 const appDomain = env('APP_DOMAIN');
