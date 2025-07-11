@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: phonebook
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description:
+    This is a documentation of phonebook app
+tags: 
+  - name: Contacts
+    description: Operation about contacts.
+  - name: bearerAuth
+    description: Auth operation.
+servers:
+  - url: http://localhost:3000
+  # - url: #посилання на задеплоєний сайт
+paths:
+  /contacts: 
+    get:
+      $ref: ../swagger/paths/contacts/{id}/get.yaml
+  # тут будуть посилання на ендпоінти
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

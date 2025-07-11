@@ -21,6 +21,7 @@ import { sendEmail } from '../utils/sendMail.js';
 
 import { TEMPLATE_DIR } from '../constants/index.js';
 import SessionCollection from '../db/models/sessions.js';
+import { getUserNameFromGoogleTokenPayload, validateCode } from '../utils/googleOAuth2.js';
 //sessions.js name changed
 const verifyEmailTemplatePath = path.join(TEMPLATE_DIR, 'verify-email.html');
 const appDomain = env('APP_DOMAIN');
@@ -203,4 +204,33 @@ export const resetPassword = async (payload) => {
     { _id: user._id },
     { password: encryptedPassword },
   );
+};
+
+export const loginOrRegisterWithGoogle = async code => {
+const loginTicket = await validateCode(code);
+const payload = loginTicket.getPayload();
+if(!payload){
+  throw createHttpError(401);
+}
+
+let user = await userCollection.findOne({
+  email: payload.email
+});
+if(!user){
+
+    const password = await bcrypt.hash(randomBytes(10), 10);
+    const username = await getUserNameFromGoogleTokenPayload(payload);
+  await userCollection.create({
+    email: payload.email,
+    username,
+    password,
+  });
+}
+
+const newSession = createSession();
+
+  return SessionCollection.create({
+    userId: user._id,
+    ...newSession,
+  });
 };
