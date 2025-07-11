@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { typeList } from '../constants/contacts.js';
 export const contactAddSchema = Joi.object({
-  name: Joi.string().required().min(3).max(6).messages({
+  name: Joi.string().required().min(3).max(20).messages({
     "any.required": "you must type a name"
   }),
   phoneNumber: Joi.string().required(),

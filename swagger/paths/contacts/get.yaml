@@ -3,27 +3,32 @@
 tags:
   - Contacts
 summary: Get list of contacts
-operationId: getContacts
+operationId: getContacts 
 description: 'Get list of contacts with this endpoint'
 security:
   - bearerAuth: []
 parameters:
   - in: query
     name: page
+    required: false
     schema:
       type: integer
-    example: 1
+      example: 1
+      description: Page number for pagination
   - in: query
     name: perPage
+    required: false
     schema:
       type: integer
       example: 10
+    description: Number of items per page
   - in: query
     name: sortBy
     schema:
       type: string
-      example: 'age'
-    description: "All student's fields can be mentioned. Default value - _id"
+      enum: [name, email, phoneNumber, isFavourite, contactType, photo]
+      example: name
+    description: "All contact's fields can be mentioned. Default value - _id"
   - in: query
     name: sortOrder
     schema:
@@ -31,34 +36,18 @@ parameters:
       enum: ['asc', 'desc']
       example: 'asc'
   - in: query
-    name: minAvgMark
+    name: isFavouriteFilter
     schema:
-      type: number
-      example: 4
+      type: boolean
+      example: false
   - in: query
-    name: maxAvgMark
-    schema:
-      type: number
-      example: 10
-  - in: query
-    name: minAge
+    name: typeFilter
     schema:
       type: number
       example: 10
-  - in: query
-    name: maxAge
-    schema:
-      type: number
-      example: 16
-  - in: query
-    name: gender
-    schema:
-      type: string
-      enum: ['male', 'female', 'other']
-      example: male
 responses:
   '200':
-    description: Successfully found students!
+    description: Successfully found contacts!
     content:
       application/json:
         schema:
@@ -73,7 +62,7 @@ responses:
               example: 200
             message:
               type: string
-              example: Successfully found students!
+              example: Successfully found contacts!
             data:
               type: object
               required:
@@ -88,7 +77,7 @@ responses:
                 data:
                   type: array
                   items:
-                    $ref: '../../components/schemas/student.yaml'
+                    $ref: '../../components/schemas/contact.yaml'
                 page:
                   type: number
                   example: 2
