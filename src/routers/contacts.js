@@ -16,17 +16,17 @@ contactsRouter.use(authenticate);
 
 contactsRouter.get('/', ctrlWrapper(contactsControllers.getContactsController));
 
-contactsRouter.get('/:id', isValidId, ctrlWrapper(contactsControllers.getContactByIdController));
+contactsRouter.get('/:contactId', isValidId, ctrlWrapper(contactsControllers.getContactByIdController));
 
 //upload.fields({name: "photo-one", maxCount: 1}, {name: "photo-two", maxCount: 10});
 //apload.array('photo', 10)
 contactsRouter.post('/', upload.single("photo"), validateBody(contactAddSchema), ctrlWrapper(contactsControllers.addContactController));
 
-contactsRouter.put('/:id', isValidId, validateBody(contactAddSchema), ctrlWrapper(contactsControllers.upsertContactController));
+contactsRouter.put('/:contactId', isValidId, validateBody(contactAddSchema), ctrlWrapper(contactsControllers.upsertContactController));
 
-contactsRouter.patch('/:id', upload.single("photo"), isValidId, validateBody(contactUpdateSchema), ctrlWrapper(contactsControllers.patchContactController));
+contactsRouter.patch('/:contactId', upload.single("photo"), isValidId, validateBody(contactUpdateSchema), ctrlWrapper(contactsControllers.patchContactController));
 
-contactsRouter.delete('/:id', isValidId, ctrlWrapper(contactsControllers.deleteContactController));
+contactsRouter.delete('/:contactId', isValidId, ctrlWrapper(contactsControllers.deleteContactController));
 
 
 
