@@ -1,0 +1,21 @@
+tags:
+  - Users
+summary: Verify User Email
+operationId: verifyEmail
+description: Confirms user's email address using verification token
+security:
+  - bearerAuth: []
+parameters:
+  - in: query
+    name: token
+    required: true
+    schema:
+      type: string
+      example: some-verification-token
+responses:
+  '200':
+    description: Email verified successfully
+  '400':
+    description: Invalid or expired token
+  '404':
+    description: User not found

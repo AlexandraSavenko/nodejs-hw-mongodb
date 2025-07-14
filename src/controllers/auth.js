@@ -31,7 +31,7 @@ const {token} = req.query;
 await authServices.verify(token);
 res.json({
        status: 200,
-       message: "Email has been verified",
+       message: "Email verified successfully",
        data: {}
    });
 };
@@ -42,7 +42,7 @@ export const loginController = async (req, res) => {
 
   res.json({
     status: 200,
-    message: 'Successfully login user',
+    message: 'Successfully logged in an user!',
     data: {
       accessToken: session.accessToken,
     },
@@ -54,7 +54,7 @@ export const refreshController = async (req, res) => {
   setupSession(res, session);
   res.json({
     status: 200,
-    message: 'Successfully refreshed session',
+    message: 'Successfully refreshed a session!',
     data: {
       accessToken: session.accessToken,
     },

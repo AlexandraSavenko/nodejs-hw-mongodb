@@ -31,6 +31,24 @@ paths:
   /users/register:
       post:
         $ref: ../swagger/paths/users/register/post.yaml
+  /users/login:
+      post:
+        $ref: ../swagger/paths/users/login/post.yaml
+  /users/refresh:
+      post:
+        $ref: ../swagger/paths/users/refresh/post.yaml
+  /users/logout:
+      post:
+        $ref: ../swagger/paths/users/logout/post.yaml
+  /users/verify:
+      post:
+        $ref: ../swagger/paths/users/verify/get.yaml
+  /users/send-reset-email:
+      post:
+        $ref: ../swagger/paths/users/send-reset-email/post.yaml
+  /users/send-reset-psw:
+      post:
+        $ref: ../swagger/paths/users/send-reset-psw/post.yaml
 components:
   securitySchemes:
     bearerAuth:

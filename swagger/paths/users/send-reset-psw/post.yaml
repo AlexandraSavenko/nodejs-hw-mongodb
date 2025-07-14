@@ -1,0 +1,30 @@
+tags:
+  - Users
+summary: Reset Password
+operationId: resetPassword
+description: Set a new password using reset token
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - token
+          - password
+        properties:
+          token:
+            type: string
+            example: reset-token
+          password:
+            type: string
+            example: NewSecurePassword123
+responses:
+  '200':
+    description: Password changed successfully
+  '400':
+    description: Invalid or expired token
+  '404':
+    description: User not found

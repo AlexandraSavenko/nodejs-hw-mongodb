@@ -1,0 +1,25 @@
+tags:
+  - Users
+summary: Send Password Reset Email
+operationId: sendResetEmail
+description: Sends email with password reset token
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required:
+          - email
+        properties:
+          email:
+            type: string
+            format: email
+            example: user@example.com
+responses:
+  '200':
+    description: Reset email sent
+  '404':
+    description: Email not found

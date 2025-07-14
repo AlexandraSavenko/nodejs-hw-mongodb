@@ -1,0 +1,35 @@
+tags:
+  - Users
+summary: Refresh Token
+operationId: refreshToken
+description: 'Use a valid refresh token to obtain a new access token.'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          refreshToken:
+            type: string
+            example: "abc123refresh"
+        required:
+          - refreshToken
+responses:
+  '200':
+    description: New access and refresh tokens
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            accessToken:
+              type: string
+              example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+            refreshToken:
+              type: string
+              example: "newRefreshToken123..."
+  '401':
+    $ref: '../../../components/responses/401.yaml'
