@@ -1,0 +1,54 @@
+tags:
+  - Users
+summary: Create User
+operationId: createUser
+description: 'Create a user with payload'
+security:
+  - bearerAuth: []
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - email
+          - password
+          - verify
+        properties:
+          name:
+            description: "User's name"
+            type: string
+            example: 'John Doe'
+          email:
+            description: "User's email"
+            type: string
+            example: myContactEmail@gmail.com
+          password:
+            description: "User's password"
+            type: string
+            example: MyBestPassword100%Works
+responses:
+  '201':
+    description: Creates a user
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully registered a user!
+            data:
+              type: object
+              $ref: '../../../components/schemas/user.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+
