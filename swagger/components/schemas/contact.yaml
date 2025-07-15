@@ -1,12 +1,8 @@
 type: object
 required:
-  - _id
   - name
   - phoneNumber
-  - email
-  - isFavourite
   - contactType  
-  - photo
   - userId
 properties:
   _id:

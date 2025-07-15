@@ -13,8 +13,7 @@ tags:
   - name: Auth
     description: Auth operation.
 servers:
-  - url: http://localhost:3000
-  # - url: #посилання на задеплоєний сайт
+  - url: https://hw7-swagger-0548.onrender.com
 paths:
   /contacts: 
     get:

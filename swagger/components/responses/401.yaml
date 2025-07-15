@@ -12,5 +12,5 @@ content:
           example: 401
         message:
           type: string
-          example: UnauthorizedError
+          example: "Access token expired!"
        
